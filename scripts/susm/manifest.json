@@ -1,0 +1,12 @@
+{
+    "name": "Super Ultra Script Manager",
+    "publisher": {
+        "name": "Tato",
+        "contact": {
+            "Discord": "itstato"
+        }
+    },
+    "commands": {
+        "susm": "Base command"
+    }
+}

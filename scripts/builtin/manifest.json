@@ -1,0 +1,15 @@
+{
+    "name": "Built In",
+    "publisher": {
+        "name": "Tato",
+        "contact": {
+            "Discord": "itstato"
+        }
+    },
+    "commands": {
+        "clear": "Clears the console",
+        "cls": "Clears the console",
+        "exit": "Ends the terminal session",
+        "end": "Ends the terminal session"
+    }
+}
