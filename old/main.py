@@ -31,14 +31,12 @@ current_dir:str = path.abspath(getcwd()).replace("\\","/")
 parent_dir:str = path.abspath(__file__).replace("main.py","")
 scripts:list = listdir(f"{parent_dir}scripts")
 
-if "__pycache__" in scripts:
-    scripts.remove("__pycache__")
+#if "__pycache__" in scripts:
+#    scripts.remove("__pycache__")
 
-for script in scripts:
-    if f"{script[0]}{script[1]}" == "__":
-        scripts.remove(script)
-
-
+#for script in scripts:
+#    if f"{script[0]}{script[1]}" == "__":
+#        scripts.remove(script)
 
 def parse_input(un_parsed:str) -> list:
     return un_parsed.split(";;")
