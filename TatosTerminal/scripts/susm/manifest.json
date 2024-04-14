@@ -1,0 +1,16 @@
+{
+	"name": "susm",
+	"version": "1.0.0",
+	"github": "https://github.com/ItsTato/TatosTerminal",
+	"publisher": {
+		"name": "Tato",
+		"contact": {
+			"Discord": "@itstato",
+			"GitHub": "https://github.com/ItsTato"
+		}
+	},
+	"commands": {
+		"susm install": "Install a package.",
+		"susm delete": "Delete a package."
+	}
+}

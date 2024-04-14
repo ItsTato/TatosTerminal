@@ -1,14 +1,5 @@
-return function(ctx)
-	print("test")
-end;
-
---[[
-alertnative syntax:
-
-	local function run(ctx)
-		...
+return function()
+	if Session:isRunning() then -- just in case.
+		Session:Exit();
 	end;
-	
-	return run;
-
---]]
+end;

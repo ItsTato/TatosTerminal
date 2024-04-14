@@ -1,8 +1,11 @@
 {
 	"packages": [
-		{"builtin": "1.0.0"}
+		{"builtin": "1.0.0"},
+		{"susm": "1.0.0"}
 	],
 	"commands": {
-		"exit": "exit.lua@builtin"
+		"exit": "exit.lua@builtin",
+		"susm install": "susm install.lua@susm",
+		"susm delete": "susm delete.lua@susm"
 	}
 }
