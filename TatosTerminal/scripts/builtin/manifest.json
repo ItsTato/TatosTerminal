@@ -1,9 +1,12 @@
 {
 	"name": "builtin",
+	"version": "1.0.0",
+	"github": "https://github.com/ItsTato/TatosTerminal",
 	"publisher": {
 		"name": "Tato",
 		"contact": {
-			"Discord": "itstato"
+			"Discord": "@itstato",
+			"GitHub": "https://github.com/ItsTato"
 		}
 	},
 	"commands": {
