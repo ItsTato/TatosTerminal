@@ -1,0 +1,12 @@
+{
+	"name": "builtin",
+	"publisher": {
+		"name": "Tato",
+		"contact": {
+			"Discord": "itstato"
+		}
+	},
+	"commands": {
+		"exit": "Ends your TatosTerminal session."
+	}
+}
