@@ -8,5 +8,5 @@ def main() -> None:
 		if "--smush" in argv:
 			smush = True
 	Terminal(__file__,smush)
-	print("\n\nTatosTerminal session was closed.")
+	print("Goodbye traveler! TatosTerminal session has been closed.")
 	return
