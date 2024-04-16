@@ -1,3 +1,6 @@
-A VERY bad 'termina' app.
+# TatosTerminal
+A VERY bad 'terminal'.
 
-~~Honestly, kinda feel like re-making this in Lua instead~~
+Every script this terminal runs is a .lua file (I plan on integrating at least another language, though probably not..)
+
+A very silly project I'm working on just to pass time and sharpen my skills.
