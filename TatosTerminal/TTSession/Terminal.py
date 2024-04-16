@@ -52,13 +52,13 @@ def Terminal(file_name:str,smush:bool) -> None: #commands:list = sys.argv[1].spl
 				return __import__(parts_pname)
 			if len(parts_pname) > 1:
 				table:dict = {}
-				for index in parts_pname:
-					table[parts_pname[index]] = __import__(parts_pname[index])
+				for i in parts_pname:
+					table[parts_pname[i]] = __import__(parts_pname[i])
 				return table
 		if not isinstance(parts_pname,str) and len(parts_pname) > 1:
 			table:dict = {}
-			for index in parts_pname:
-				table[parts_pname[index]] = getattr(__import__(p_name),parts_pname[index])
+			for i in parts_pname:
+				table[parts_pname[i]] = getattr(__import__(p_name),parts_pname[i])
 			return table
 		if not isinstance(parts_pname,str):
 			return getattr(__import__(p_name),parts_pname[1])
