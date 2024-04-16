@@ -11,6 +11,7 @@
 	},
 	"commands": {
 		"susm install": "Install a package.",
-		"susm delete": "Delete a package."
+		"susm delete": "Delete a package.",
+		"susm list": "List installed packages."
 	}
 }
