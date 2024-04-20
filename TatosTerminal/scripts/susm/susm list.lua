@@ -1,14 +1,15 @@
 return function()
 	local os = Python:Require({ "path", "listdir" },"os");
-	local scripts = list.curate(os.listdir(os.path.join(TTMeta.directory,"scripts")));
-	for index, directory in ipairs(scripts) do
-		if not os.path.isdir(os.path.join(os.path.join(TTMeta.directory,"scripts"),directory)) then
-			list.remove(scripts,index);
-		elseif string.find(directory,".") then
-			list.remove(scripts,index);
-		else
-			print(index.." "..directory);
+	local raw_scripts = list.curate(os.listdir(os.path.join(TTMeta.directory,"scripts")));
+	local scripts = {};
+	for _, directory in ipairs(raw_scripts) do
+		if os.path.isdir(os.path.join(os.path.join(TTMeta.directory,"scripts"),directory)) then
+			table.insert(scripts,directory);
 		end;
 	end;
-	print(scripts);
+
+	print("SUSM -- Installed Packages @ "..os.path.join(TTMeta.directory,"scripts"));
+	for _, directory in ipairs(scripts) do
+		print(directory);
+	end;
 end;

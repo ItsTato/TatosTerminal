@@ -71,15 +71,12 @@ def Terminal(file_name:str,smush:bool) -> None: #commands:list = sys.argv[1].spl
 		py_list.insert(0,None)
 		py_list.append(None)
 		return py_list
-	def __remove_from_lua_list(lua_list:list,pos:int):
-		print(pos)
-		del lua_list[pos]
 
 	__TTMeta:dict = {
-		"directory": pd
+		"directory": pd.replace("\\","/")
 	}
 	__Session:dict = {
-		"cwd": cwd,
+		"cwd": cwd.replace("\\","/"),
 		"Exit": __Exit,
 		"isRunning": __get_running
 	}
@@ -91,8 +88,7 @@ def Terminal(file_name:str,smush:bool) -> None: #commands:list = sys.argv[1].spl
 		"Package": __import_or_from
 	}
 	__list:dict = {
-		"curate": __to_lua_list,
-		"remove": __remove_from_lua_list
+		"curate": __to_lua_list
 	}
 
 	lua.globals().TTMeta = __TTMeta
