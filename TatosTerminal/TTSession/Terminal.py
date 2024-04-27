@@ -1,4 +1,4 @@
-from os import name, path, getlogin, listdir
+from os import name, path, getlogin, listdir, system
 from platform import node
 import colorama, lupa, json
 from colorama import Fore, Style, Back
@@ -12,7 +12,12 @@ colorama.init(autoreset=True)
 lua:lupa.LuaRuntime = lupa.LuaRuntime(unpack_returned_tuples=True)
 running:bool = True
 
+def clear_console() -> None:
+	system("cls" if name in ["nt","dos"] else "clear")
+
 def Terminal(file_name:str,smush:bool,ignore_bad_package:bool,ignore_bad_install:bool) -> None:
+	clear_console()
+
 	cwd:str = CWD.get().replace("\\","/")
 	pd:str = PD.get(file_name).replace("\\","/")
 
@@ -134,9 +139,8 @@ def Terminal(file_name:str,smush:bool,ignore_bad_package:bool,ignore_bad_install
 		try:
 			not_parsed = input(prompt)
 		except KeyboardInterrupt:
-			#global running
-			#running = False
-			print("")
+			clear_console()
+			print(f"Have you tried running {Style.BRIGHT}exit{Style.RESET_ALL} ?")
 
 		if not_parsed == "exit":
 			file = open(f"{pd}/scripts/builtin/exit.lua","r")
@@ -150,4 +154,5 @@ def Terminal(file_name:str,smush:bool,ignore_bad_package:bool,ignore_bad_install
 			except Exception as e:
 				print(e)
 			file.close()
+
 	return
