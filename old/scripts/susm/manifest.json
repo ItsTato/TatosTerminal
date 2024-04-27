@@ -1,5 +1,6 @@
 {
     "name": "Super Ultra Script Manager",
+    "version": "1.0.0",
     "publisher": {
         "name": "Tato",
         "contact": {
@@ -8,5 +9,11 @@
     },
     "commands": {
         "susm": "Base command"
+    },
+    "map": {
+        "susm": "susm",
+        "susm install": "susm install.lua",
+        "susm list": "susm list.lua",
+        "susm delete": "susm delete.lua"
     }
 }

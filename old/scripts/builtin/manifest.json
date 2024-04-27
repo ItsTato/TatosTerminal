@@ -1,5 +1,6 @@
 {
     "name": "Built In",
+    "version": "1.0.0",
     "publisher": {
         "name": "Tato",
         "contact": {
@@ -11,5 +12,11 @@
         "cls": "Clears the console",
         "exit": "Ends the terminal session",
         "end": "Ends the terminal session"
+    },
+    "map": {
+        "clear": "clear.lua",
+        "cls": "clear.lua",
+        "exit": "exit.lua",
+        "end": "exit.lua"
     }
 }

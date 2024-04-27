@@ -1,21 +1,26 @@
 from os import name, path, getlogin, listdir
 from platform import node
 import colorama, lupa, json
-from colorama import Fore, Style
-from typing import Union, Any
+from colorama import Fore, Style, Back
+from typing import Union
 
 from TatosTerminal.TTPaths import CWD, PD
-from .Errors import IncompleteInstallation
+from .Errors import IncompleteInstallation, InvalidPackage
+from .Message import createMessage, WARNING, ERROR, GOOD, OK
 
 colorama.init(autoreset=True)
 lua:lupa.LuaRuntime = lupa.LuaRuntime(unpack_returned_tuples=True)
 running:bool = True
 
-def Terminal(file_name:str,smush:bool) -> None: #commands:list = sys.argv[1].split(";;")
+def Terminal(file_name:str,smush:bool,ignore_bad_package:bool,ignore_bad_install:bool) -> None:
 	cwd:str = CWD.get().replace("\\","/")
 	pd:str = PD.get(file_name).replace("\\","/")
 
-	current_app:str = f"{Fore.LIGHTMAGENTA_EX}TT{Fore.LIGHTYELLOW_EX}-{Fore.LIGHTMAGENTA_EX}{name}" ## i.e. TT-nt
+	os:str = name.lower()
+	os = os.replace("nt","win").replace("dos","win")
+	os = os.upper()
+
+	current_app:str = f"{Fore.LIGHTMAGENTA_EX}TT{Fore.LIGHTYELLOW_EX}-{Fore.LIGHTMAGENTA_EX}{os}" ## i.e. TT-WIN
 	user_at_host:str = f"{Fore.LIGHTMAGENTA_EX}{getlogin()}{Fore.LIGHTYELLOW_EX}@{Fore.LIGHTMAGENTA_EX}{node()}" # i.e. ItsTato@ItsTatoPC
 
 	if name == "nt":
@@ -29,11 +34,34 @@ def Terminal(file_name:str,smush:bool) -> None: #commands:list = sys.argv[1].spl
 
 	script_dir = path.join(pd,"scripts")
 	if not path.exists(script_dir):
-		raise IncompleteInstallation("Required directory /scripts/ is missing!")
-	scripts:list = listdir(script_dir)
-	for index, script in enumerate(scripts):
-		if not path.isdir(path.join(script_dir,script)):
-			del scripts[index]
+		if not ignore_bad_install:
+			raise IncompleteInstallation("Required directory /scripts/ is missing!\nLaunch with --ignore-bad-install to continue loading anyways.")
+		else:
+			createMessage([ERROR],"Required directory /scripts/ is missing!")()
+	raw_scripts:list = listdir(script_dir)
+	scripts:list = []
+	for index, script in enumerate(raw_scripts):
+		if path.isdir(path.join(script_dir,script)):
+			scripts.append(script)
+
+	if "builtin" not in scripts:
+		if not ignore_bad_install:
+			raise IncompleteInstallation("Missing pre-installed package \"builtin\" (1.0.0)!\nLaunch with --ignore-bad-install to continue loading anyways.")
+		else:
+			createMessage([WARNING],"Missing pre-installed package \"builtin\" (1.0.0)!")()
+	if "susm" not in scripts:
+		if not ignore_bad_install:
+			raise IncompleteInstallation("Missing pre-installed package \"susm\" (1.0.0)!\nLaunch with --ignore-bad-install to continue loading anyways.")
+		else:
+			createMessage([WARNING],"Missing pre-installed package \"susm\" (1.0.0)!")()
+
+	for script in scripts:
+		script_at:str = path.join(script_dir,script)
+		if not path.exists(path.join(script_at,"manifest.json")):
+			if not ignore_bad_package:
+				raise InvalidPackage(f"Package {script} is missing required file \"manifest.json\"!\nLaunch with --ignore-bad-package to continue loading anyways.")
+			else:
+				createMessage([ERROR],f"Package {script} is missing required file \"manifest.json\'!")()
 
 	if not path.exists(path.join(script_dir,"index.json")):
 		data:dict = {
@@ -46,8 +74,8 @@ def Terminal(file_name:str,smush:bool) -> None: #commands:list = sys.argv[1].spl
 		with open(path.join(script_dir,"index.json"),"w") as file:
 			json.dump(data,file)
 
-	def __import_or_from(_,parts_pname:Union[str,dict],p_name:str=""):
-		if p_name == "":
+	def __import_or_from(_,parts_pname:Union[str,dict],p_name:str=None):
+		if p_name is None:
 			if isinstance(parts_pname,str):
 				return __import__(parts_pname)
 			if len(parts_pname) > 1:

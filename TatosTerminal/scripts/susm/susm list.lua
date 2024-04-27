@@ -8,8 +8,9 @@ return function()
 		end;
 	end;
 
-	print("SUSM -- Installed Packages @ "..os.path.join(TTMeta.directory,"scripts"));
+	print("SUSM -- Installed Packages @ "..TTMeta.directory.."/scripts");
 	for _, directory in ipairs(scripts) do
 		print(directory);
 	end;
+
 end;
