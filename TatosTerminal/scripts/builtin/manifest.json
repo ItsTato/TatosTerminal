@@ -1,15 +1,22 @@
 {
-	"name": "builtin",
+	"name": "Built In",
 	"version": "1.0.0",
-	"github": "https://github.com/ItsTato/TatosTerminal",
 	"publisher": {
 		"name": "Tato",
 		"contact": {
-			"Discord": "@itstato",
-			"GitHub": "https://github.com/ItsTato"
+			"Discord": "itstato"
 		}
 	},
 	"commands": {
-		"exit": "Ends your TatosTerminal session."
+		"clear": "Clears the console",
+		"cls": "Clears the console",
+		"exit": "Ends the terminal session",
+		"end": "Ends the terminal session"
+	},
+	"map": {
+		"clear": "clear.lua",
+		"cls": "clear.lua",
+		"exit": "exit.lua",
+		"end": "exit.lua"
 	}
 }

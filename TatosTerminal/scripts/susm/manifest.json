@@ -1,17 +1,19 @@
 {
-	"name": "susm",
+	"name": "Super Ultra Script Manager",
 	"version": "1.0.0",
-	"github": "https://github.com/ItsTato/TatosTerminal",
 	"publisher": {
 		"name": "Tato",
 		"contact": {
-			"Discord": "@itstato",
-			"GitHub": "https://github.com/ItsTato"
+			"Discord": "itstato"
 		}
 	},
 	"commands": {
-		"susm install": "Install a package.",
-		"susm delete": "Delete a package.",
-		"susm list": "List installed packages."
+		"susm": "Base command"
+	},
+	"map": {
+		"susm": "susm",
+		"susm install": "susm install.lua",
+		"susm list": "susm list.lua",
+		"susm delete": "susm delete.lua"
 	}
 }
