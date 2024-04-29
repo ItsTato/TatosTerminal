@@ -1,7 +1,6 @@
 from typing import Callable
 
-from colorama import init, Fore, Back, Style
-init(autoreset=True)
+from colorama import Fore, Back, Style
 
 class Tag:
 	def __init__(self,name:str,back_color:str=Back.RESET,fore_color:str=Fore.RESET,style:str=Style.BRIGHT) -> None:

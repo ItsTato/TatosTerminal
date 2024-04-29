@@ -1,14 +1,16 @@
 from os import name, path, getlogin, listdir, system
 from platform import node
-import colorama, lupa, json
-from colorama import Fore, Style, Back
+import lupa
+import json
+from colorama import just_fix_windows_console, Fore, Style
 from typing import Union
 
 from TatosTerminal.TTPaths import CWD, PD
 from .Errors import IncompleteInstallation, InvalidPackage
 from .Message import createMessage, WARNING, ERROR, GOOD, OK
 
-colorama.init(autoreset=True)
+just_fix_windows_console()
+
 lua:lupa.LuaRuntime = lupa.LuaRuntime(unpack_returned_tuples=True)
 running:bool = True
 
