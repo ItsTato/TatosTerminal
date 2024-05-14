@@ -3,7 +3,7 @@ from platform import node
 import lupa
 import json
 from colorama import just_fix_windows_console, Fore, Style
-from typing import Union
+from typing import Union, Any
 
 from TatosTerminal.TTPaths import CWD, PD
 from .Errors import IncompleteInstallation, InvalidPackage
@@ -107,6 +107,13 @@ def Terminal(file_name:str,smush:bool,ignore_bad_package:bool,ignore_bad_install
 		py_list.append(None)
 		return py_list
 
+	def __table_find(table:dict,o:Any) -> Any:
+		for index in table:
+			if table[index] == o: return o
+		return None
+	def __table_has(table:dict,o:Any) -> Any:
+		return True if __table_find(table,o) is not None else False
+
 	__TTMeta:dict = {
 		"directory": pd.replace("\\","/")
 	}
@@ -131,6 +138,9 @@ def Terminal(file_name:str,smush:bool,ignore_bad_package:bool,ignore_bad_install
 	lua.globals().Python = __Python
 	lua.globals().list = __list
 
+	lua.globals().table.find = __table_find
+	lua.globals().table.has = __table_has
+
 	while globals().get("running"):
 		if not smush:
 			prompt:str = f"{current_app} {Fore.LIGHTYELLOW_EX}|> {user_at_host}\n{at_directory}{Fore.LIGHTYELLOW_EX}%{Fore.LIGHTWHITE_EX} "
@@ -142,7 +152,7 @@ def Terminal(file_name:str,smush:bool,ignore_bad_package:bool,ignore_bad_install
 			not_parsed = input(prompt)
 		except KeyboardInterrupt:
 			clear_console()
-			print(f"Have you tried running {Style.BRIGHT}exit{Style.RESET_ALL} ?")
+			print(f"Have you tried running the {Style.BRIGHT}exit{Style.RESET_ALL} command?")
 
 		if not_parsed == "exit":
 			file = open(f"{pd}/scripts/builtin/exit.lua","r")
