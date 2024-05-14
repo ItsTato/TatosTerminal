@@ -7,15 +7,14 @@ from typing import Union, Any
 
 from TatosTerminal.TTPaths import CWD, PD
 from .Errors import IncompleteInstallation, InvalidPackage
-from .Message import createMessage, WARNING, ERROR, GOOD, OK
+from .Message import createMessage, WARNING, ERROR
 
 just_fix_windows_console()
 
 lua:lupa.LuaRuntime = lupa.LuaRuntime(unpack_returned_tuples=True)
 running:bool = True
 
-def clear_console() -> None:
-	system("cls" if name in ["nt","dos"] else "clear")
+def clear_console() -> None: system("cls" if name in ["nt","dos"] else "clear")
 
 def Terminal(file_name:str,smush:bool,ignore_bad_package:bool,ignore_bad_install:bool) -> None:
 	clear_console()
@@ -108,8 +107,8 @@ def Terminal(file_name:str,smush:bool,ignore_bad_package:bool,ignore_bad_install
 		return py_list
 
 	def __table_find(table:dict,o:Any) -> Any:
-		for index in table:
-			if table[index] == o: return o
+		for i in table:
+			if table[i] == o: return o
 		return None
 	def __table_has(table:dict,o:Any) -> Any:
 		return True if __table_find(table,o) is not None else False
